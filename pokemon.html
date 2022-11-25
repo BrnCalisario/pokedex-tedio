@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon</title>
 
+    <link rel="stylesheet" href="style.css">
+
     <script
         src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -20,15 +22,33 @@
             var pokeID = url_atual[4]
             
             var pokemon = await getPokemonByID(pokeID)
-            $("#title").html(pokemon.name)
 
-                
+            var { name, id, types, stats } = pokemon
+
+            $("#title").html(name)
+    
             var imgUrl = 
-                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+            $("#pokemon-img").attr("src", imgUrl)
 
-            var pokeImage = $("<img>").attr("src", imgUrl)
+            var typeList = []
+            types.forEach(pokeType => {
+                typeList.push(pokeType.type.name)
+            });
+            
+            
+            var typeList = types.map( (pokeType) => {
+                return pokeType.type.name
+            })
+            $("#tipos").append(typeList.join('/'))
 
-            $("body").append(pokeImage)
+            var statList = stats.map( (pokeStat) => {
+                return {
+                    name: pokeStat.stat.name,
+                    value: pokeStat.base_stat
+                }
+            })
+            console.log(statList)
         }
 
     
@@ -43,5 +63,9 @@
 </head>
 <body>
     <h1 id="title"></h1>
+    
+    <img id="pokemon-img"/>
+
+    <div id="tipos"></div>
 </body>
 </html>

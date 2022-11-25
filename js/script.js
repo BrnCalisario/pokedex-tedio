@@ -12,7 +12,6 @@ async function geraPokemons() {
         var pokeName = $("<h1>").text(capitalize(pokemon.name))
         box.append(pokeName)
 
-        
         var imgUrl = 
             `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
 

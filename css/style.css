@@ -4,8 +4,6 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
-
-
 body {
     background-color: cadetblue;
     padding: 0;
@@ -24,6 +22,7 @@ hr {
     color: black;
 
     border-radius: 15px;
+    padding: 0 1rem;
 
     transition-duration: 0.4s;
     
@@ -90,8 +89,6 @@ hr {
     background-color: #49b85a;
     color: white;
 }
-
-
 
 #search-wrap input[type=text] {
     border: none;
