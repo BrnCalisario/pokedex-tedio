@@ -1,5 +1,5 @@
 async function geraPokemons() {
-    const req = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=155")
+    const req = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
     const res = await req.json()
 
     var pokemons = res.results
@@ -8,7 +8,7 @@ async function geraPokemons() {
         
         var pokemon = await getPokemon(pokeResponse.url)
 
-        var box = $("<div></div>").addClass("pokebox")
+        var box = $("<a>").addClass("pokebox")
         var pokeName = $("<h1>").text(capitalize(pokemon.name))
         box.append(pokeName)
         
@@ -17,7 +17,12 @@ async function geraPokemons() {
 
         var pokeImage = $("<img>").attr("src", imgUrl)
         box.append(pokeImage)
-        
+
+
+        // box.click(() => {
+        //     window.location.href = "http://www.w3schools.com"
+        // })
+
         $("#field").append(box)
     }
 }

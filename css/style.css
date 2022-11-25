@@ -10,26 +10,42 @@ body {
     margin: 0;
 }
 
+hr {
+    width: 90%;
+}
+
+#poke-title {
+    font-size: 3rem;
+    margin-left: 3rem;
+}
+
 #pokedex {
     background-color: white;
-    margin: 0 16rem;
+    margin: 0 10rem;
 }
 
 #field{
+
     align-content: center;
-    margin-left: 2rem;
+    margin: 0 6rem;
 }
 
 .pokebox {
     display: inline-block;
-    padding: 2rem;
+    padding: 0 2rem;
     text-align: center;
+    cursor: pointer;
+    margin-bottom: 4rem;
 }
 
 .pokebox img {
     width: 200px;
+    margin-bottom: 10px;
 }
 
+.pokebox h1 {
+    margin: 0 0 10px 0;
+}
 
 #search-wrap{
     float: right;
