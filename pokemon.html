@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokemon</title>
 
     <script
         src="https://code.jquery.com/jquery-3.6.1.js"
@@ -13,14 +13,31 @@
     </script>
 
     <script type="text/javascript">
+        
 
-        function onRender() {
-            var poke_id = JSON.parse(<%= poke_id %>)
-            var title = document.getElementById("title")
-            title.innerHTML = poke_id
+        async function geraPokemon() {
+            var url_atual = window.location.href.split('/')
+            var pokeID = url_atual[4]
+            
+            var pokemon = await getPokemonByID(pokeID)
+            $("#title").html(pokemon.name)
+
+                
+            var imgUrl = 
+                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+
+            var pokeImage = $("<img>").attr("src", imgUrl)
+
+            $("body").append(pokeImage)
         }
 
-        $("body").on("load", onRender())
+    
+        async function getPokemonByID(id) {
+            req = await fetch('https://pokeapi.co/api/v2/pokemon/' + id)
+            return  await req.json()
+        }
+
+        $("body").on("load", geraPokemon())
 
     </script>
 </head>

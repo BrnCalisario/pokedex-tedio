@@ -11,6 +11,7 @@ async function geraPokemons() {
         var box = $("<a>").addClass("pokebox")
         var pokeName = $("<h1>").text(capitalize(pokemon.name))
         box.append(pokeName)
+
         
         var imgUrl = 
             `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
@@ -18,21 +19,17 @@ async function geraPokemons() {
         var pokeImage = $("<img>").attr("src", imgUrl)
         box.append(pokeImage)
 
+        box.attr("href", "pokemon/" + pokemon.id)
 
-        // box.click(() => {
-        //     window.location.href = "http://www.w3schools.com"
-        // })
 
         $("#field").append(box)
     }
 }
 
 async function getPokemon(url) {
-    console.log(url)
     const req = await fetch(url)
     const res = await req.json()
 
-    console.log(res)
     return res
 }
 

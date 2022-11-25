@@ -4,6 +4,8 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
+
+
 body {
     background-color: cadetblue;
     padding: 0;
@@ -17,6 +19,20 @@ hr {
 #poke-title {
     font-size: 3rem;
     margin-left: 3rem;
+
+    background-color: white;
+    color: black;
+
+    border-radius: 15px;
+
+    transition-duration: 0.4s;
+    
+}
+
+#poke-title:hover{
+    background-color: black;
+    color: white;
+    
 }
 
 #pokedex {
@@ -36,6 +52,13 @@ hr {
     text-align: center;
     cursor: pointer;
     margin-bottom: 4rem;
+    text-decoration: none;
+    color: black;
+}
+
+.pokebox:hover {
+    background-color: lightgray;
+    border-radius: 50px;
 }
 
 .pokebox img {

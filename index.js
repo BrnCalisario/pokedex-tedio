@@ -1,26 +1,43 @@
 const express = require("express")
-const path = require("path")
-let ejs = require('ejs')
-let fs = require('fs')
+const { is } = require("type-is")
 
 const app = express()
 
 app.use(express.static(__dirname + '/js'))
 app.use(express.static(__dirname + '/css'))
-
+    
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "index.html"))
+    res.sendFile(__dirname + "/index.html")
 })
+
 
 app.get("/pokemon/:id", (req, res) => {
-    const poke_id = req.params.id
-    console.log(JSON.stringify(poke_id))
+    const { id } = req.params
 
-    fs.readFile('pokemon.html', 'utf-8', (err, html) => {
-        res.send(ejs.render(html.toString(), {poke_id: poke_id}))
-    })
+    
+    if (id < 0 || !isNumber(id)) {
+        //res.sendFile(__dirname + "notfound.html")
+        res.send('<h1> 404 Not Found </h1>')
+    }
 
+    
+    res.sendFile(__dirname + "/pokemon.html")
 })
 
-
 app.listen(process.env.PORT || 3000, () => console.log("Server running..."))
+
+
+
+
+
+function isNumber(char) {
+    if (typeof char !== 'string') {
+      return false;
+    }
+  
+    if (char.trim() === '') {
+      return false;
+    }
+  
+    return !isNaN(char);
+}
