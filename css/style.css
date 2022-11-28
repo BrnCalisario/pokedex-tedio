@@ -45,6 +45,15 @@ hr {
     margin: 0 6rem;
 }
 
+.error-box {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px;
+}
+
 .pokebox {
     display: inline-block;
     padding: 0 2rem;
