@@ -19,17 +19,27 @@
 </head>
 
 <body>
-    <div id="pokedex">
+    <div class="pokedex">
         
         <div class="header">
             <h1 id="poke-title">Pokedex</h1>
             <div id="search-wrap">
                 <input id="search-input" type="text" placeholder="Nome do Pokemon">
-                <button onclick="searchPokemon()">Pesquisar</button>
+                <button id="search-btn" onclick="searchPokemon()">Pesquisar</button>
             </div>
+
+            
         </div>
 
         <!--    <a href="pokemon.html"> teste</a> -->
+
+        <div id="btn-list">
+            <button value="normal" >Normal</button>
+            <button value="grass">Grass</button>
+            <button value="fire">Fire</button>
+            <button value="water">Water</button>
+            <button value="ground">Ground</button>
+        </div>
 
         <hr>
         

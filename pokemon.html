@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Pokemon</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
 
     <script
         src="https://code.jquery.com/jquery-3.6.1.js"
@@ -16,7 +17,6 @@
 
     <script type="text/javascript">
         
-
         async function geraPokemon() {
             var url_atual = window.location.href.split('/')
             var pokeID = url_atual[4]
@@ -35,7 +35,6 @@
             types.forEach(pokeType => {
                 typeList.push(pokeType.type.name)
             });
-            
             
             var typeList = types.map( (pokeType) => {
                 return pokeType.type.name
@@ -60,12 +59,24 @@
         $("body").on("load", geraPokemon())
 
     </script>
+
+
 </head>
 <body>
-    <h1 id="title"></h1>
-    
-    <img id="pokemon-img"/>
+    <div class="pokedex">
 
-    <div id="tipos"></div>
+        <div class="header">
+            <a href="/">
+                <h1 id="poke-title">Pokedex</h1>
+            </a>
+        </div>
+    
+
+        <h1 id="title"></h1>
+    
+        <img id="pokemon-img"/>
+
+        <div id="tipos"></div>
+    </div>
 </body>
 </html>

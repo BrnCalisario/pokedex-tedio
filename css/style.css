@@ -34,7 +34,20 @@ hr {
     
 }
 
-#pokedex {
+#btn-list {
+    display: flex;
+    justify-content: right;
+    align-items:flex-end;
+
+    margin: 0 5rem 0 0;
+}
+
+#btn-list button {
+    margin: 0 5px;
+}
+
+
+.pokedex {
     background-color: white;
     margin: 0 10rem;
 }
@@ -83,6 +96,14 @@ hr {
     margin: auto 5rem auto auto;
 }
 
+button {
+    font-size: 1.5rem;
+    border-radius: 20px;
+    transition-duration: 0.4s;
+    color: white;
+    padding: 0 1rem;
+}
+
 #search-wrap button {
     font-size: 1.5rem;
 
@@ -92,10 +113,19 @@ hr {
     border: 2px solid #49b85a;
     border-radius: 20px;
     transition-duration: 0.4s;
+
+    
 }
 
-#search-wrap button:hover {
+#search-wrap button:hover, button[enabled] {
+    border: 2px solid #49b85a;
     background-color: #49b85a;
+    color: white;
+}
+
+#search-wrap button:disabled, button[disabled] {
+    border: 2px solid red;
+    background-color: red;
     color: white;
 }
 
@@ -109,4 +139,9 @@ hr {
 
 .header {
     display: flex;
+}
+
+.header a {
+    text-decoration: none;
+    color: black
 }
