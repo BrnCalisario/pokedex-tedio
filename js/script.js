@@ -7,13 +7,20 @@ async function getPokemons() {
 }
 
 async function getPokemonsByType(typeValue) {
+
     const req = await fetch("https://pokeapi.co/api/v2/type/" +  typeValue)
     const res = await req.json()
 
-    var pokemons = res.pokemon.filter(p => p.pokemon.url.split('/')[6] < 151)
+    var pokemons = res.pokemon.filter(p => p.pokemon.url.split('/')[6] <= 600)
     return pokemons.map(p => p.pokemon)
 }
     
+async function getSinglePokemon(url) {
+    const req = await fetch(url)
+    const res = await req.json()
+    return res
+}
+
 async function renderPokemons(pokeList) {
     
     $("#field").empty()
@@ -38,28 +45,13 @@ async function renderPokemons(pokeList) {
     }
 }
 
-function renderError() {
-    
-    $("#field").empty()
-
-    var errorDiv = $("<div>").addClass("error-box")
-    errorDiv.append($<"<p>").text("Nenhum pokemon encontrado :( ")
-    $("#field").append(errorDiv)
-}
-
-async function getSinglePokemon(url) {
-    const req = await fetch(url)
-    const res = await req.json()
-    return res
-}
-
 async function searchPokemon() {
     var input = $("#search-input").val()
 
     $("#search-btn").prop("disabled", true)
     var pokemons = await getPokemons()
 
-    var filteredSearch = pokemons.filter( p => p.name.includes(input))
+    var filteredSearch = pokemons.filter( p => p.name.includes(input.toLowerCase()))
 
     if (filteredSearch.length == 0) {
         renderError()
@@ -73,12 +65,27 @@ async function searchPokemon() {
     )
 }
 
+function disableAllBtn(state) {
+    $("#btn-list > button").each(function () {
+        $(this).prop("disabled", state)
+    })
+}
+
+
+function renderError() {
+    $("#field").empty()
+    var errorDiv = $("<div>").addClass("error-box")
+    errorDiv.append($<"<p>").text("Nenhum pokemon encontrado :( ")
+    $("#field").append(errorDiv)
+}
+
+
+
 const applyBtnColor = () => {
     $("#btn-list > button").each(function () { 
         let element = $(this).prop("innerHTML")
         switch(element) {
             case "Normal":
-                $(this).css("color", "black")
                 break
             case "Fire":
                 $(this).css("background-color", "#d9372b")
@@ -96,15 +103,28 @@ const applyBtnColor = () => {
 }
 
 const btnFunction = () => {
+    
+    
     $("#btn-list > button").each(function () {
         let button = $(this)
 
+        if (button.val() == 0) {
+            return
+        }
+
         button.click(async function () {
+            //button.prop("disabled", true)
+            disableAllBtn(true)
             let filtered = await getPokemonsByType(button.val())
             console.log(filtered)
-            await renderPokemons(filtered)
+            await renderPokemons(filtered).then(() => disableAllBtn(false))
+            
         })
-        
+    })
+
+    $("#btn-all").click( async () => {
+        disableAllBtn(true)
+        renderPokemons(await getPokemons()).then(() => disableAllBtn(false))
     })
 }
 

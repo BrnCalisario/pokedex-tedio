@@ -36,10 +36,9 @@ hr {
 
 #btn-list {
     display: flex;
-    justify-content: right;
-    align-items:flex-end;
-
-    margin: 0 5rem 0 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 #btn-list button {
@@ -97,11 +96,12 @@ hr {
 }
 
 button {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border-radius: 20px;
     transition-duration: 0.4s;
     color: white;
     padding: 0 1rem;
+    background-color: gray;
 }
 
 #search-wrap button {
