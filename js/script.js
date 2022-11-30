@@ -3,10 +3,17 @@ async function getPokemons() {
     const res = await req.json()
 
     var pokemons = res.results
-    //console.log(pokemons)
     return pokemons
 }
 
+async function getPokemonsByType(typeValue) {
+    const req = await fetch("https://pokeapi.co/api/v2/type/" +  typeValue)
+    const res = await req.json()
+
+    var pokemons = res.pokemon.filter(p => p.pokemon.url.split('/')[6] < 151)
+    return pokemons.map(p => p.pokemon)
+}
+    
 async function renderPokemons(pokeList) {
     
     $("#field").empty()
@@ -66,39 +73,6 @@ async function searchPokemon() {
     )
 }
 
-
-async function filterType(type) {
-    var all = await getPokemons()
-
-    var filtered = await all.filter( pokeResponse => {
-        return true
-    })
-
-
-
-
-    // filtered = await all.forEach(async response => {
-    //     var pokemon = await getSinglePokemon(response.url)
-    //     var { types } = pokemon 
-
-
-    //     var find = false
-    //     types.forEach(pokeType => {
-    //         if (pokeType.type.name == type && !find) {
-                
-    //             filtered.push(response)
-    //             console.log(pokeType.type.name, response.name)
-                
-    //             find = true
-    //         }
-    //     })
-    // })
-
-    console.log(filtered)
-
-    return await filtered
-}
-
 const applyBtnColor = () => {
     $("#btn-list > button").each(function () { 
         let element = $(this).prop("innerHTML")
@@ -126,7 +100,9 @@ const btnFunction = () => {
         let button = $(this)
 
         button.click(async function () {
-            await renderPokemons(await filterType(button.val()))
+            let filtered = await getPokemonsByType(button.val())
+            console.log(filtered)
+            await renderPokemons(filtered)
         })
         
     })
