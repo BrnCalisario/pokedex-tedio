@@ -11,7 +11,7 @@ async function getPokemonsByType(typeValue) {
     const req = await fetch("https://pokeapi.co/api/v2/type/" +  typeValue)
     const res = await req.json()
 
-    var pokemons = res.pokemon.filter(p => p.pokemon.url.split('/')[6] <= 600)
+    var pokemons = res.pokemon.filter(p => p.pokemon.url.split('/')[6] <= 151)
     return pokemons.map(p => p.pokemon)
 }
     
@@ -79,26 +79,34 @@ function renderError() {
     $("#field").append(errorDiv)
 }
 
+const colorList = (element) => {
+    colors = {
+        "All": "gray",
+        "Normal": "#A8A77A",
+        "Fire": "#EE8130",
+        "Grass": "#7AC74C",
+        "Water": "#6390F0",
+        "Ground": "#E2BF65",
+        "Eletric": "#F7D02C",
+        "Ice": "#96D9D6",
+        "Fighting": "#C22E28",
+        "Flying": "#A98FF3",
+        "Psychic": "#F95587",
+        "Bug": "#A6B91A",
+        "Rock": "#B6A136",
+        "Ghost": "#735797",
+        "Poison": "#A33EA1",
+        "Dark": "#705746",
+        "Steel": "#B7B7CE",
+    }
 
+    return colors[element]
+}
 
 const applyBtnColor = () => {
     $("#btn-list > button").each(function () { 
         let element = $(this).prop("innerHTML")
-        switch(element) {
-            case "Normal":
-                break
-            case "Fire":
-                $(this).css("background-color", "#d9372b")
-                break
-            case "Grass":
-                $(this).css("background-color", "#49b85a")
-                break
-            case "Water":
-                $(this).css("background-color", "#2b8bd9")
-                break
-            case "Ground":
-                $(this).css("background-color", "#d9742b")
-        }
+        $(this).css("background-color", colorList(element))
     })
 }
 

@@ -1,0 +1,32 @@
+@media screen and (max-width: 768px) {
+    .header {
+        display: flex;
+        flex-direction: row;  
+        justify-content: center;
+    }
+
+    #poke-title {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    #search-wrap {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        /* display: flex;
+        flex-direction: column;
+        justify-content: center; */
+
+    }
+    
+    #search-wrap input[type="search"] {
+        margin: 0 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #search-wrap  {
+        flex-direction: column; 
+    }
+}

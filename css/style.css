@@ -39,21 +39,26 @@ hr {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 80%;
+    margin: 0 auto;
 }
 
 #btn-list button {
-    margin: 0 5px;
+    margin: 5px;
 }
 
 
 .pokedex {
     background-color: white;
-    margin: 0 10rem;
+    width: 80%;
+    margin: 0 auto;
 }
 
 #field{
-
+    display: flex;
+    justify-content: center;
     align-content: center;
+    flex-wrap: wrap;
     margin: 0 6rem;
 }
 
@@ -67,7 +72,6 @@ hr {
 }
 
 .pokebox {
-    display: inline-block;
     padding: 0 2rem;
     text-align: center;
     cursor: pointer;
@@ -84,15 +88,15 @@ hr {
 .pokebox img {
     width: 200px;
     margin-bottom: 10px;
+    transition: 0.5s;
+}
+
+.pokebox img:hover {
+    transform: scale(1.25);
 }
 
 .pokebox h1 {
     margin: 0 0 10px 0;
-}
-
-#search-wrap{
-    float: right;
-    margin: auto 5rem auto auto;
 }
 
 button {
@@ -104,6 +108,22 @@ button {
     background-color: gray;
 }
 
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header a {
+    text-decoration: none;
+    color: black
+}
+
+#search-wrap{
+    float: right;
+    margin: auto 5rem auto auto;
+}
+
 #search-wrap button {
     font-size: 1.5rem;
 
@@ -113,8 +133,6 @@ button {
     border: 2px solid #49b85a;
     border-radius: 20px;
     transition-duration: 0.4s;
-
-    
 }
 
 #search-wrap button:hover, button[enabled] {
@@ -129,7 +147,7 @@ button {
     color: white;
 }
 
-#search-wrap input[type=text] {
+#search-wrap input[type="search"] {
     border: none;
     border-bottom: 2px solid gray;
 
@@ -137,11 +155,8 @@ button {
     margin: 0 30px;
 }
 
-.header {
-    display: flex;
+#search-wrap input[type="search"]:focus {
+    outline: 0;
 }
 
-.header a {
-    text-decoration: none;
-    color: black
-}
+
